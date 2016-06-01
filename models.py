@@ -7,7 +7,10 @@ class wsafip_connection(models.Model):
 
         @api.model
         def _connect_ws_afip(self):
-		import pdb;pdb.set_trace()
+		connections = self.search([])
+		for connection in connections:
+			if connection.state != 'connected':
+				connection.do_login()
                 return None
 
 
